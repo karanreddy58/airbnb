@@ -1,6 +1,6 @@
 import Container from "../Container";
 import Logo from "./logo";
-import Search from "./search";
+import Search from "./Search";
 import UserMenu from "./userMenu";
 
 const Navbar = ()=>{
