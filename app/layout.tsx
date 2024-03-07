@@ -5,7 +5,7 @@ import Navbar from "./components/navbar/navbar";
 import RegisterModal from "./components/modals/RegisterModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "./components/modals/LoginModal";
-
+import getCurrentUser from "./actions/getCurrentUser";
 const font = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -13,18 +13,20 @@ export const metadata: Metadata = {
   description: "Rent a house for funzies",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentUser = await getCurrentUser();
+  console.log("here",currentUser);
   return (
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider/>
         <LoginModal/>
         <RegisterModal/>
-        <Navbar />
+        <Navbar currentUser = {currentUser} />
         {children}</body>
     </html>
   );
